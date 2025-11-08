@@ -12,6 +12,7 @@ import ClientNavbar from './navbars/ClientNavbar';
 import Footer from './components/Footer';
 
 import Home from './components/Home';
+import Companies from './components/Companies';
 import Services from './components/Services'; 
 import About from './components/About';
 import Contact from './components/Contact';  
@@ -25,6 +26,7 @@ import CompanyCart from "./page/CompanyCart";
 import ClientHome from './homepages/ClientHome';
 import EngHome from './homepages/EngHome';
 import Project from './page/Project';
+import ProjectCart from "./page/ProjectCart"; 
 import EngDash from './page/EngDash';
 import CompanyDash from './page/CompanyDash';
 import Employee from './page/Employee';
@@ -68,7 +70,10 @@ function App() {
             path="/company/employee" 
             element={<RequireRole role="company"><Employee /></RequireRole>} 
           />
-          
+          {/* <Route 
+            path="/company/projects" 
+            element={<RequireRole role="company"><CompanyProject /></RequireRole>} 
+          /> */}
 
           <Route 
             path="/eng/home" 
@@ -84,12 +89,18 @@ function App() {
             path="/client/home" 
             element={<RequireRole role="client"><ClientHome /></RequireRole>} 
           />
-          
+          <Route 
+            path="/companies" 
+            element={<RequireRole role="client"><Companies /></RequireRole>} 
+          />
           <Route 
             path="/project" 
             element={<RequireRole role="client"><Project /></RequireRole>} 
           />
-          
+          <Route 
+            path="/projectcart" 
+            element={<RequireRole role="client"><ProjectCart /></RequireRole>} 
+          />
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

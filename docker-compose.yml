@@ -16,7 +16,7 @@ services:
     ports:
       - "5000:5000"
     env_file:
-      - ./BUILDAURA_B/.env   # <-- Use your existing .env file
+      - ./BUILDAURA_B/.env   
     depends_on:
       - mongo
 

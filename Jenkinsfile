@@ -45,13 +45,12 @@ pipeline {
 
         stage('Deploy Containers') {
     steps {
-        echo 'Removing old containers if they exist...'
-        sh 'docker rm -f mongo_c backend_c frontend_c || true'
+            echo 'Removing old containers if they exist...'
+            sh 'docker rm -f mongo_c backend_c frontend_c || true'
 
-        echo 'Deploying using Docker Compose...'
-        sh 'docker compose up -d --build'
-    }
-}
+            echo 'Deploying using Docker Compose...'
+            sh 'docker compose up -d --build'
+        }
 }
 
     }

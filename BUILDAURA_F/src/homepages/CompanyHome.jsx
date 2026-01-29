@@ -29,7 +29,7 @@ const CompanyHome = () => {
       return;
     }
     try {
-      const res = await axios.get(`http://localhost:5000/api/companycarts/company/${user.companyId}`);
+      const res = await axios.get(`http://3.109.62.60:5000/api/companycarts/company/${user.companyId}`);
       if (res.data && Array.isArray(res.data) && res.data.length > 0) {
         setHasCart(true);
       } else {

@@ -33,7 +33,7 @@ const CompanyCart = () => {
         companyName: storedCompany.name || ''
       }));
 
-      axios.get(`http://localhost:5000/api/companycarts/company/${storedCompany.companyId}`)
+      axios.get(`http://3.109.62.60:5000/api/companycarts/company/${storedCompany.companyId}`)
         .then(res => {
           if (res.data) {
             setFormData({
@@ -131,12 +131,12 @@ const CompanyCart = () => {
       if (formData.image && formData.image instanceof File) submitData.append('image', formData.image);
 
       if (cartId) {
-        await axios.put(`http://localhost:5000/api/companycarts/${cartId}`, submitData, {
+        await axios.put(`http://3.109.62.60:5000/api/companycarts/${cartId}`, submitData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         alert('Company cart updated successfully!');
       } else {
-        const res = await axios.post('http://localhost:5000/api/companycarts', submitData, {
+        const res = await axios.post('http://3.109.62.60:5000/api/companycarts', submitData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         setCartId(res.data._id);

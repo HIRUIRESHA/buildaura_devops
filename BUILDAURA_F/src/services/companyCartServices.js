@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/companycarts";
+const API_URL = "http://3.109.62.60:5000/api/companycarts";
 
 // Create cart
 export const createCompanyCart = async (formData) => {

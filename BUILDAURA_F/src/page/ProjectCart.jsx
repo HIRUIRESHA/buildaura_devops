@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { submitProject } from "../services/projectCartServices";
 
-const COMPANY_API_URL = "http://localhost:5000/api/companies/all";
-const CLIENT_API_URL = "http://localhost:5000/api/clients/all";
+const COMPANY_API_URL = "http://3.109.62.60:5000/api/companies/all";
+const CLIENT_API_URL = "http://3.109.62.60:5000/api/clients/all";
 
 function ProjectCart() {
   const navigate = useNavigate();

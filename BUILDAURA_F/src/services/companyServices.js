@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/companies"; 
+const API_URL = "http://3.109.62.60:5000/api/companies"; 
 
 // Register company
 export const registerCompany = async (companyData) => {

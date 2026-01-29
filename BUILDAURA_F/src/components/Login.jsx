@@ -2,9 +2,9 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
-const USER_API = "http://localhost:5000/api/users";
-const ADMIN_API = "http://localhost:5000/api/admin";
-const COMPANY_API = "http://localhost:5000/api/companies";
+const USER_API = "http://3.109.62.60:5000/api/users";
+const ADMIN_API = "http://3.109.62.60:5000/api/admin";
+const COMPANY_API = "http://3.109.62.60:5000/api/companies";
 
 export default function Login() {
   const navigate = useNavigate();

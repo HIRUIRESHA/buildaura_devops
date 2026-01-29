@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/projectcart";
+const API_URL = "http://3.109.62.60:5000/api/projectcart";
 
 
 export const submitProject = async (projectData) => {

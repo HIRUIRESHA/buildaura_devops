@@ -12,7 +12,7 @@ const Employee = () => {
 
       if (!companyId) throw new Error("Company ID not found in localStorage");
 
-      const res = await fetch(`http://localhost:5000/api/users/company/${companyId}`);
+      const res = await fetch(`http://3.109.62.60:5000/api/users/company/${companyId}`);
       const data = await res.json();
 
       if (data.success) {

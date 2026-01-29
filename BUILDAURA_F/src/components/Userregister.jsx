@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { User, Mail, Lock, Phone, Users, Building2, Eye, EyeOff, Shield, Zap, CheckCircle, ArrowLeft } from "lucide-react";
 
-const API_URL = "http://localhost:5000/api/users";
-const COMPANY_API_URL = "http://localhost:5000/api/companies/all"; // fetch all companies
+const API_URL = "http://3.109.62.60:5000/api/users";
+const COMPANY_API_URL = "http://3.109.62.60:5000/api/companies/all"; // fetch all companies
 
 function UserRegister() {
   const navigate = useNavigate();

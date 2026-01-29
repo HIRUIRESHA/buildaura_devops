@@ -4,15 +4,17 @@ services:
   mongo:
     image: mongo:6
     container_name: mongo
+    restart: always
     ports:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
 
   backend:
-    build:
-      context: ./BUILDAURA_B
+    # Changed from 'build' to 'image' to use your Docker Hub image
+    image: hiruniiresha/devops_backend:latest
     container_name: backend
+    restart: always
     ports:
       - "5000:5000"
     env_file:
@@ -21,13 +23,14 @@ services:
       - mongo
 
   frontend:
-    build:
-      context: ./BUILDAURA_F
+    # Changed from 'build' to 'image' to use your Docker Hub image
+    image: hiruniiresha/devops_frontend:latest
     container_name: frontend
+    restart: always
     ports:
-      - "5173:80"
+      - "3000:80" # Standardized port: mapped 3000 to the container's 80
     environment:
-      - VITE_API_URL=http://localhost:5000
+      - VITE_API_URL=http://3.109.62.60:5000 # Use your EC2 Public IP here
     depends_on:
       - backend
 

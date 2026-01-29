@@ -2,8 +2,11 @@ pipeline {
     agent any
 
     environment {
+        // Must match the ID you created in Jenkins -> Credentials
         DOCKERHUB_CREDS = 'dockerhub-creds'
         DOCKERHUB_USER  = 'hiruniiresha'
+        
+        // Image naming
         BACKEND_IMAGE   = "${DOCKERHUB_USER}/devops_backend:latest"
         FRONTEND_IMAGE  = "${DOCKERHUB_USER}/devops_frontend:latest"
     }
@@ -11,11 +14,12 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                // Pulls code from your GitHub: https://github.com/HIRUIRESHA/buildaura_devops
                 checkout scm
             }
         }
 
-        stage('Build Images') {
+        stage('Build Local Images') {
             steps {
                 echo 'Building backend image...'
                 sh 'docker build -t backend-image ./BUILDAURA_B'
@@ -25,40 +29,49 @@ pipeline {
             }
         }
 
-        stage('Tag Images') {
+        stage('Login & Push to DockerHub') {
             steps {
-                sh "docker tag backend-image ${BACKEND_IMAGE}"
-                sh "docker tag frontend-image ${FRONTEND_IMAGE}"
-            }
-        }
-
-        stage('Push Images to Docker Hub') {
-            steps {
+                // This block uses the credentials you stored in Jenkins
                 withCredentials([usernamePassword(credentialsId: "${DOCKERHUB_CREDS}", usernameVariable: 'DH_USER', passwordVariable: 'DH_PASS')]) {
                     sh 'echo $DH_PASS | docker login -u $DH_USER --password-stdin'
+                    
+                    echo 'Tagging and Pushing Backend...'
+                    sh "docker tag backend-image ${BACKEND_IMAGE}"
                     sh "docker push ${BACKEND_IMAGE}"
+                    
+                    echo 'Tagging and Pushing Frontend...'
+                    sh "docker tag frontend-image ${FRONTEND_IMAGE}"
                     sh "docker push ${FRONTEND_IMAGE}"
+                    
                     sh 'docker logout'
                 }
             }
         }
 
-        stage('Deploy Containers') {
-    steps {
-        echo 'Removing old containers if they exist...'
-        sh 'docker rm -f mongo backend frontend || true'
+        stage('Deploy Containers on EC2') {
+            steps {
+                echo 'Stopping old containers...'
+                // 'down' is safer than 'rm -f' because it cleans networks
+                sh 'docker compose down || true'
 
-        echo 'Deploying using Docker Compose...'
-        sh 'docker compose up -d --build'
-    }
-}
-
+                echo 'Starting fresh containers...'
+                // We do NOT use --build here because we already built them in stage 2
+                sh 'docker compose up -d'
+            }
+        }
     }
 
     post {
         always {
-            echo 'Cleaning up unused Docker images...'
+            echo 'Cleaning up system to save disk space...'
+            // This deletes the old "30 hour ago" images and intermediate build layers
             sh 'docker image prune -f'
+        }
+        success {
+            echo 'Deployment Successful! Access your app at http://3.109.62.60:3000'
+        }
+        failure {
+            echo 'Build failed. Check the Console Output for errors.'
         }
     }
 }

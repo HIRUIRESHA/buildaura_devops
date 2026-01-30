@@ -11,7 +11,7 @@ services:
       - mongo-data:/data/db
 
   backend:
-    # Changed from 'build' to 'image' to use your Docker Hub image
+    
     image: hiruniiresha/devops_backend:latest
     container_name: backend
     restart: always
@@ -23,14 +23,14 @@ services:
       - mongo
 
   frontend:
-    # Changed from 'build' to 'image' to use your Docker Hub image
+    
     image: hiruniiresha/devops_frontend:latest
     container_name: frontend
     restart: always
     ports:
       - "3000:80" # Standardized port: mapped 3000 to the container's 80
     environment:
-      - VITE_API_URL=http://3.109.62.60:5000 # Use your EC2 Public IP here
+      - VITE_API_URL=http://3.109.62.60:5000 
     depends_on:
       - backend
 

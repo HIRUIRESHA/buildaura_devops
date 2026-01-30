@@ -2,11 +2,9 @@ pipeline {
     agent any
 
     environment {
-        // Must match the ID you created in Jenkins -> Credentials
         DOCKERHUB_CREDS = 'dockerhub-creds'
         DOCKERHUB_USER  = 'hiruniiresha'
         
-        // Image naming
         BACKEND_IMAGE   = "${DOCKERHUB_USER}/devops_backend:latest"
         FRONTEND_IMAGE  = "${DOCKERHUB_USER}/devops_frontend:latest"
     }
@@ -14,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Pulls code from your GitHub: https://github.com/HIRUIRESHA/buildaura_devops
+                // Pulls code from GitHub
                 checkout scm
             }
         }
@@ -31,7 +29,7 @@ pipeline {
 
         stage('Login & Push to DockerHub') {
             steps {
-                // This block uses the credentials you stored in Jenkins
+                // This block uses the credentials stored in Jenkins
                 withCredentials([usernamePassword(credentialsId: "${DOCKERHUB_CREDS}", usernameVariable: 'DH_USER', passwordVariable: 'DH_PASS')]) {
                     sh 'echo $DH_PASS | docker login -u $DH_USER --password-stdin'
                     
@@ -51,11 +49,9 @@ pipeline {
         stage('Deploy Containers on EC2') {
             steps {
                 echo 'Stopping old containers...'
-                // 'down' is safer than 'rm -f' because it cleans networks
                 sh 'docker compose down || true'
 
                 echo 'Starting fresh containers...'
-                // We do NOT use --build here because we already built them in stage 2
                 sh 'docker compose up -d'
             }
         }

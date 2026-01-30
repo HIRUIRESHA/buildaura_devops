@@ -10,10 +10,10 @@ COPY package*.json ./
 # Install dependencies (only production needed)
 RUN npm install --production
 
-# Copy the rest of your backend code
+# Copy the rest of backend code
 COPY . .
 
-# Expose the port your backend listens on
+# Expose the port backend listens on
 EXPOSE 5000
 
 # Command to start the backend server

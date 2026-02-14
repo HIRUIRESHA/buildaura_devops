@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDS = 'dockerhub-creds'
+        DOCKERHUB_CREDS = 'dockerhub-credentials'
         DOCKERHUB_USER  = 'hiruniiresha'
         
         BACKEND_IMAGE   = "${DOCKERHUB_USER}/devops_backend:latest"

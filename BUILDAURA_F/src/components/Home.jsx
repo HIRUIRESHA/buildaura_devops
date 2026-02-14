@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <section id="home" className="relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50 overflow-hidden">
+    <section id="home" className="relative min-h-screen bg-gradient-to-br from-slate-50 via-black to-orange-50 overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-orange-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse delay-1000"></div>
@@ -64,7 +64,7 @@ function Home() {
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link to = "/signup">
-              <button className="group bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black text-green px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
+              <button className="group bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black text-red px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
                 Get Started Free
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button></Link>

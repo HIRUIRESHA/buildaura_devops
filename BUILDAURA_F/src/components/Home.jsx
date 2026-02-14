@@ -64,7 +64,7 @@ function Home() {
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link to = "/signup">
-              <button className="group bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
+              <button className="group bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black text-red px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
                 Get Started Free
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button></Link>

@@ -3,7 +3,7 @@ version: "3.9"
 services:
   mongo:
     image: mongo:6
-    container_name: mongo
+    
     restart: always
     ports:
       - "27017:27017"
@@ -13,7 +13,7 @@ services:
   backend:
     
     image: hiruniiresha/devops_backend:latest
-    container_name: backend
+    
     restart: always
     ports:
       - "5000:5000"
@@ -25,7 +25,7 @@ services:
   frontend:
     
     image: hiruniiresha/devops_frontend:latest
-    container_name: frontend
+    
     restart: always
     ports:
       - "3000:80" # Standardized port: mapped 3000 to the container's 80

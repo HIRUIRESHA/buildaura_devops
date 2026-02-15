@@ -45,8 +45,8 @@ function Home() {
               </h1>
               
               <p className="text-xl lg:text-2xl text-gray-600 max-w-2xl leading-relaxed">
-                A powerful construction project management platform that brings clients, companies, engineers, and managers together in perfect harmony.
-              </p>
+                  Hiruni Iresha             
+               </p>
             </div>
 
             <div className="flex flex-wrap gap-4">
